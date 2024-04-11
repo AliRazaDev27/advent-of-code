@@ -6,6 +6,7 @@ for (let i = 0; i < data.length - 1; i++) {
   let line = data[i].split(' ');
   map.set(line[line.length - 1], line.slice(0, line.length - 2));
 }
+map.set('b', [956]);
 
 function applyNot(number) {
   let stringForm = number.toString(2).padStart(16, '0');
