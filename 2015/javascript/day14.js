@@ -30,3 +30,23 @@ function distanceTravelled(speed, stamina, rest, time) {
 for (let i = 0; i < allDistance.length; i++) {
   console.log(doIt(allDistance[i]))
 }
+
+
+function partTwo(array) {
+  const points = new Array(array.length).fill(0);
+  for (let i = 1; i <= 2503; i++) {
+    const holder = [];
+    for (let j = 0; j < array.length; j++) {
+      let temp = distanceTravelled(array[j][0], array[j][1], array[j][2], i);
+      holder.push(temp);
+    }
+    let max = Math.max(...holder);
+    holder.forEach((element, index) => {
+      if (element === max) {
+        points[index]++;
+      }
+    })
+  }
+  console.log(Math.max(...points))
+}
+partTwo(allDistance);
