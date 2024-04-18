@@ -12,13 +12,48 @@ const info = {
   cars: 2,
   perfumes: 1
 }
+const array = []
 for (let content of file) {
   let data = content.split(' ');
-  if (info[data[2].slice(0, -1)] == data[3].slice(0, -1)) {
-    if (info[data[4].slice(0, -1)] == data[5].slice(0, -1)) {
-      if (info[data[6].slice(0, -1)] == data[7].slice(0, -1)) {
-        console.log("found:", content)
+  const obj = {}
+  obj.key = data[1].slice(0, -1);
+  obj[data[2].slice(0, -1)] = Number(data[3].slice(0, -1));
+  obj[data[4].slice(0, -1)] = Number(data[5].slice(0, -1));
+  obj[data[6].slice(0, -1)] = Number(data[7]);
+  array.push(obj);
+}
+for (let j of array) {
+  let count = 0;
+  for (let key in j) {
+    if (key == 'key') {
+      continue
+    }
+    if (key == 'cats') {
+      if (j[key] > info[key]) {
+        count++
       }
     }
+    if (key == 'trees') {
+      if (j[key] > info[key]) {
+        count++
+      }
+    }
+    if (key == 'pomeranians') {
+      if (j[key] < info[key]) {
+        count++
+      }
+    }
+    if (key == 'goldfish') {
+      if (j[key] < info[key]) {
+        count++
+      }
+    }
+    if (j[key] == info[key]) {
+      count++
+    }
+  }
+  if (count > 2) {
+    console.log(count, j)
   }
 }
+
